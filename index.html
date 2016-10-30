@@ -27,26 +27,43 @@
 
 	</script>
 	<script type="text/javascript">
-		function client() {
-			if(window.innerWidth != null)  // ie9 +  最新浏览器
-			{
-				return {
-					width: window.innerWidth,
-					height: window.innerHeight
+		window.onload = function () {
+			function client() {
+				if(window.innerWidth != null)  // ie9 +  最新浏览器
+				{
+					return {
+						width: window.innerWidth,
+						height: window.innerHeight
+					}
 				}
-			}
-			else if(document.compatMode === "CSS1Compat")  // 标准浏览器
-			{
-				return {
-					width: document.documentElement.clientWidth,
-					height: document.documentElement.clientHeight
+				else if(document.compatMode === "CSS1Compat")  // 标准浏览器
+				{
+					return {
+						width: document.documentElement.clientWidth,
+						height: document.documentElement.clientHeight
+					}
 				}
-			}
-			return {   // 怪异浏览器
-				width: document.body.clientWidth,
-				height: document.body.clientHeight
+				return {   // 怪异浏览器
+					width: document.body.clientWidth,
+					height: document.body.clientHeight
 
+				}
 			}
+			var styleCss = document.getElementById("styleCss");
+			window.onresize = reSize;
+			function reSize() {
+				var ClientWidth = client().width;
+				if(ClientWidth > 980){
+					styleCss.href = "";
+				}
+				else if(ClientWidth > 640){
+					styleCss.href = "css/pad.css";
+				}
+				else{
+					styleCss.href = "css/mobile.css";
+				}
+			}
+
 		}
 
 	</script>
